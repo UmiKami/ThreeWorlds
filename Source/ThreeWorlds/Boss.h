@@ -10,6 +10,9 @@
 /**
  * 
  */
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FAttackEnd);
+
 UCLASS()
 class THREEWORLDS_API ABoss : public ABaseCharacter
 {
@@ -39,6 +42,9 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION()
+	void MontageEnded(UAnimMontage* Montage, bool bInterrupted);
+	
 	UFUNCTION(BlueprintCallable)
 	void Punch();
 	
@@ -50,5 +56,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void VortexProjectileAttack();
-	
+
+	UPROPERTY(BlueprintAssignable, Category="Event Dispatcher")
+	FAttackEnd OnAttackEnd;
 };

@@ -46,6 +46,19 @@ void ABoss::Punch()
 	if (PunchMontage)
 	{
 		PlayAnimMontage(PunchMontage);
+
+		UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+
+		AnimInstance->OnMontageEnded.AddDynamic(this, &ABoss::MontageEnded);
+	}
+}
+
+
+void ABoss::MontageEnded(UAnimMontage* Montage, bool bInterrupted)
+{
+	if (Montage == PunchMontage)
+	{
+		OnAttackEnd.Broadcast();
 	}
 }
 
