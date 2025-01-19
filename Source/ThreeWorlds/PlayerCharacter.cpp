@@ -107,8 +107,6 @@ void APlayerCharacter::HitDetect()
     
 	if (hit)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Other actor: %s"), *HitResult.GetActor()->GetActorNameOrLabel());
-
 		ABaseCharacter* OtherActor = Cast<ABaseCharacter>(HitResult.GetActor());
 
 		if (OtherActor)
